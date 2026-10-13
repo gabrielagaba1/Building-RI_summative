@@ -1,0 +1,5 @@
+[
+  { "id": "rec_0001", "description": "Lunch at cafeteria", "amount": 3500, "category": "Food", "date": "2026-10-08", "createdAt": "2026-10-08T10:30:00.000Z", "updatedAt": "2026-10-08T10:30:00.000Z" },
+  { "id": "rec_2", "description": " Moto to town", "amount": "1500", "category": "Transport!", "date": "2026-02-30", "createdAt": "yesterday", "updatedAt": "2026-10-08T10:30:00.000Z" },
+  { "id": "rec_0001", "description": "Airtime", "amount": 1000.555, "category": "Other", "date": "2026-10-09", "createdAt": "2026-10-09T10:30:00.000Z", "updatedAt": "2026-10-09T10:30:00.000Z" }
+]

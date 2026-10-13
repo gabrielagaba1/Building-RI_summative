@@ -1,0 +1,17 @@
+[
+  { "id": "rec_0001", "description": "Laptop for the capstone", "amount": 1250000, "category": "Other", "date": "2024-02-29", "createdAt": "2024-02-29T17:05:00.000Z", "updatedAt": "2024-02-29T17:05:00.000Z" },
+  { "id": "rec_0002", "description": "Christmas gifts for the cousins", "amount": 25000, "category": "Entertainment", "date": "2025-12-31", "createdAt": "2025-12-31T19:40:00.000Z", "updatedAt": "2025-12-31T19:40:00.000Z" },
+  { "id": "rec_0003", "description": "New year bus to Musanze", "amount": 4000, "category": "Transport", "date": "2026-01-01", "createdAt": "2026-01-01T06:15:00.000Z", "updatedAt": "2026-01-01T06:15:00.000Z" },
+  { "id": "rec_0004", "description": "Semester fees instalment", "amount": 450000, "category": "Fees", "date": "2026-09-01", "createdAt": "2026-09-01T08:00:00.000Z", "updatedAt": "2026-09-01T08:00:00.000Z" },
+  { "id": "rec_0005", "description": "Python textbook, used copy", "amount": 18000, "category": "Books", "date": "2026-09-14", "createdAt": "2026-09-14T11:20:00.000Z", "updatedAt": "2026-09-14T11:20:00.000Z" },
+  { "id": "rec_0006", "description": "Moto to Kacyiru", "amount": 1500, "category": "Transport", "date": "2026-10-07", "createdAt": "2026-10-07T07:45:00.000Z", "updatedAt": "2026-10-07T07:45:00.000Z" },
+  { "id": "rec_0007", "description": "Lunch at ALU cafeteria", "amount": 3500, "category": "Food", "date": "2026-10-08", "createdAt": "2026-10-08T10:30:00.000Z", "updatedAt": "2026-10-08T10:30:00.000Z" },
+  { "id": "rec_0008", "description": "Coffee at Question Coffee", "amount": 2800, "category": "Food", "date": "2026-10-09", "createdAt": "2026-10-09T13:10:00.000Z", "updatedAt": "2026-10-09T13:10:00.000Z" },
+  { "id": "rec_0009", "description": "Ginger tea and mandazi", "amount": 1200, "category": "Food", "date": "2026-10-10", "createdAt": "2026-10-10T06:55:00.000Z", "updatedAt": "2026-10-10T06:55:00.000Z" },
+  { "id": "rec_0010", "description": "Airtime for for the week", "amount": 2000, "category": "Other", "date": "2026-10-11", "createdAt": "2026-10-11T09:00:00.000Z", "updatedAt": "2026-10-11T09:00:00.000Z" },
+  { "id": "rec_0011", "description": "Brochettes & chips <with> pili pili", "amount": 6500, "category": "Food", "date": "2026-10-11", "createdAt": "2026-10-11T18:25:00.000Z", "updatedAt": "2026-10-11T18:25:00.000Z" },
+  { "id": "rec_0012", "description": "Printing \"final\" CV, 12 pages", "amount": 1250.5, "category": "Books", "date": "2026-10-12", "createdAt": "2026-10-12T08:05:00.000Z", "updatedAt": "2026-10-12T08:05:00.000Z" },
+  { "id": "rec_0013", "description": "SMS bundle fee", "amount": 0.5, "category": "Other", "date": "2026-10-12", "createdAt": "2026-10-12T12:00:00.000Z", "updatedAt": "2026-10-12T12:00:00.000Z" },
+  { "id": "rec_0014", "description": "Free entry to the Amahoro match", "amount": 0, "category": "Entertainment", "date": "2026-10-12", "createdAt": "2026-10-12T15:30:00.000Z", "updatedAt": "2026-10-12T15:30:00.000Z" },
+  { "id": "rec_0015", "description": "Café Neo, black coffee", "amount": 2200, "category": "Food", "date": "2026-10-13", "createdAt": "2026-10-13T07:20:00.000Z", "updatedAt": "2026-10-13T07:20:00.000Z" }
+]
