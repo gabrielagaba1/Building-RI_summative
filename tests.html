@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amafaranga tests</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,700;1,500&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/main.css">
+<style>
+  .checks { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: 14px; }
+  .checks span { display: inline-block; min-width: 46px; font-weight: 700; }
+  .pass span { color: var(--ok); }
+  .fail span { color: var(--danger); }
+  #summary { font-family: var(--font-display); font-size: 30px; font-weight: 700; color: var(--ok); }
+  #summary.is-bad { color: var(--danger); }
+  #results { display: grid; gap: 16px; }
+  .panel h2 { font-size: 22px; font-style: normal; font-family: var(--font-body); }
+</style>
+<script type="module" src="scripts/tests.js"></script>
+</head>
+<body>
+<main id="main">
+  <div class="view">
+    <header class="view__head">
+      <h1>Tests</h1>
+      <p class="view__lede">Small assertions for the regex rules, search, import checks and number handling. <a href="index.html">Back to the app</a>.</p>
+      <p id="summary" role="status">Running…</p>
+    </header>
+    <div id="results"></div>
+  </div>
+</main>
+</body>
+</html>
