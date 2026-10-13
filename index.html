@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Amafaranga</title>
+<meta name="description" content="Amafaranga is a student finance tracker that treats every franc like it matters. Plain HTML, CSS and JavaScript.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,700;1,500&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/main.css">
+<script>
+  try {
+    const saved = JSON.parse(localStorage.getItem('amafaranga:theme'));
+    if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+  } catch (error) {}
+</script>
+<script type="module" src="scripts/main.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="brand" href="#dashboard">
+      <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+        <circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3"></circle>
+        <path d="M20 6 L23 20 L20 34 L17 20 Z" fill="currentColor"></path>
+      </svg>
+      <span class="brand__word">Amafaranga</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="#dashboard" data-route="dashboard">Dashboard</a></li>
+        <li><a href="#ledger" data-route="ledger">Ledger</a></li>
+        <li><a href="#issue" data-route="issue">New entry</a></li>
+        <li><a href="#settings" data-route="settings">Settings</a></li>
+        <li><a href="#about" data-route="about">About</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"></path>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <section class="view" data-view="dashboard" aria-labelledby="dashboard-title">
+    <header class="view__head">
+      <h1 id="dashboard-title" tabindex="-1">Your note</h1>
+      <p class="view__lede">Every franc you log gets printed here. Keep an eye on the gold thread.</p>
+    </header>
+
+    <article class="note" id="note" aria-labelledby="note-label">
+      <div class="note__rosette" aria-hidden="true"></div>
+      <div class="note__face">
+        <p class="note__serial" id="note-serial">AF 0000</p>
+        <p class="note__label" id="note-label">Spent so far</p>
+        <p class="note__amount" id="note-amount">0</p>
+        <p class="note__currency" id="note-currency">Rwandan francs</p>
+        <p class="note__meta" id="note-meta"></p>
+      </div>
+      <div class="note__cap">
+        <p class="note__percent" id="note-percent">0<span>%</span></p>
+        <p class="note__capline" id="cap-message"></p>
+        <div class="thread" id="cap-meter" role="meter" aria-label="Share of your cap used" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <span class="thread__fill"></span>
+        </div>
+      </div>
+      <p class="note__stamp" aria-hidden="true">Over cap</p>
+    </article>
+
+    <section class="counter" aria-labelledby="counter-title">
+      <h2 id="counter-title">Exchange counter</h2>
+      <div class="coins" role="group" aria-labelledby="counter-title" data-coins></div>
+      <p class="counter__note">Rates are yours to set in <a href="#settings">Settings</a>.</p>
+    </section>
+
+    <div class="dash-grid">
+      <section class="stamps" aria-labelledby="stamps-title">
+        <h2 id="stamps-title" class="visually-hidden">Quick numbers</h2>
+        <ul class="stamp-list">
+          <li class="stamp stamp--plum">
+            <p class="stamp__label">Entries</p>
+            <p class="stamp__value" id="stat-count">0</p>
+          </li>
+          <li class="stamp stamp--red">
+            <p class="stamp__label">Biggest category</p>
+            <p class="stamp__value" id="stat-top">None</p>
+          </li>
+          <li class="stamp stamp--green">
+            <p class="stamp__label">This month, <span data-show-code>RWF</span></p>
+            <p class="stamp__value" id="stat-month">0</p>
+          </li>
+          <li class="stamp stamp--gold">
+            <p class="stamp__label">Average entry, <span data-show-code>RWF</span></p>
+            <p class="stamp__value" id="stat-average">0</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel" aria-labelledby="week-title">
+        <h2 id="week-title">Seven days</h2>
+        <p class="panel__sub" id="week-total"></p>
+        <ol class="week__bars" id="week-bars"></ol>
+        <p class="quiet" id="week-empty" hidden>A quiet week. Nothing logged in the last seven days.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="cats-title">
+        <h2 id="cats-title">Where it went</h2>
+        <ul class="cat-list" id="cat-list"></ul>
+      </section>
+    </div>
+  </section>
+
+  <section class="view" data-view="ledger" aria-labelledby="ledger-title" hidden>
+    <header class="view__head view__head--split">
+      <div class="view__head">
+        <h1 id="ledger-title" tabindex="-1">Ledger</h1>
+        <p class="view__lede">Every entry you have issued. Search it with a regular expression, sort it, fix it.</p>
+      </div>
+      <a class="btn btn--gold" href="#issue">New entry</a>
+    </header>
+
+    <div class="finder" role="search">
+      <div class="field field--search">
+        <label for="search">Find with a regex</label>
+        <div class="search-box" id="search-box">
+          <span aria-hidden="true">/</span>
+          <input id="search" type="text" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="coffee|tea" aria-describedby="search-help search-status">
+          <span aria-hidden="true" id="search-flags">/i</span>
+        </div>
+        <p class="hint" id="search-help">Looks through descriptions, categories, amounts in RWF and dates.</p>
+      </div>
+      <label class="check"><input type="checkbox" id="match-case"> Match case</label>
+    </div>
+
+    <div class="tries">
+      <span id="tries-label">Try one:</span>
+      <ul aria-labelledby="tries-label">
+        <li><button type="button" class="try" data-pattern="coffee|tea">coffee|tea</button></li>
+        <li><button type="button" class="try" data-pattern="\.\d{2}\b">\.\d{2}\b</button></li>
+        <li><button type="button" class="try" data-pattern="\b(\w+)\s+\1\b">\b(\w+)\s+\1\b</button></li>
+        <li><button type="button" class="try" data-pattern="^2026-10">^2026-10</button></li>
+        <li><button type="button" class="try" data-pattern="(">( broken</button></li>
+      </ul>
+    </div>
+
+    <p class="status-line" id="search-status" role="status"></p>
+
+    <div class="sortbar" role="group" aria-labelledby="sort-label">
+      <span id="sort-label">Sort by</span>
+      <button type="button" class="sort" data-sort="date" aria-pressed="true">Date</button>
+      <button type="button" class="sort" data-sort="description" aria-pressed="false">Description</button>
+      <button type="button" class="sort" data-sort="amount" aria-pressed="false">Amount</button>
+    </div>
+
+    <div class="table-wrap">
+      <table class="ledger" id="ledger-table">
+        <caption class="visually-hidden" id="ledger-caption">Entries</caption>
+        <thead>
+          <tr>
+            <th scope="col">Serial</th>
+            <th scope="col" data-col="date">Date</th>
+            <th scope="col" data-col="description">Entry</th>
+            <th scope="col" data-col="amount" class="num">Amount</th>
+            <th scope="col"><span class="visually-hidden">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody id="ledger-body"></tbody>
+      </table>
+    </div>
+
+    <div class="empty-state" id="ledger-empty" hidden>
+      <p>The ledger is blank. Suspiciously frugal.</p>
+      <p class="hint">Log something you spent, or load the sample entries from Settings.</p>
+      <a class="btn btn--gold" href="#issue">Log your first entry</a>
+    </div>
+  </section>
+
+  <section class="view" data-view="issue" aria-labelledby="issue-title" hidden>
+    <header class="view__head">
+      <h1 id="issue-title" tabindex="-1">New entry</h1>
+      <p class="view__lede">Spent something? Write it down before it vanishes from memory like the money did.</p>
+    </header>
+
+    <div class="issue">
+      <form class="panel form" id="entry-form" novalidate aria-labelledby="issue-title">
+        <div class="field" data-field="description">
+          <label for="f-description">Description</label>
+          <input id="f-description" name="description" autocomplete="off" maxlength="80" placeholder="Lunch at the cafeteria" aria-describedby="f-description-msg">
+          <p class="msg" id="f-description-msg" data-hint="What was it? Keep it short."></p>
+        </div>
+        <div class="form__row">
+          <div class="field" data-field="amount">
+            <label for="f-amount">Amount in RWF</label>
+            <input id="f-amount" name="amount" inputmode="decimal" autocomplete="off" placeholder="3500" aria-describedby="f-amount-msg">
+            <p class="msg" id="f-amount-msg" data-hint="Whole francs, or up to two decimals."></p>
+          </div>
+          <div class="field" data-field="date">
+            <label for="f-date">Date</label>
+            <div class="with-button">
+              <input id="f-date" name="date" inputmode="numeric" autocomplete="off" placeholder="YYYY-MM-DD" aria-describedby="f-date-msg">
+              <button type="button" class="btn btn--small" id="f-today">Today</button>
+            </div>
+            <p class="msg" id="f-date-msg" data-hint="Year, month, day. For example 2026-10-13."></p>
+          </div>
+        </div>
+        <div class="field" data-field="category">
+          <label for="f-category">Category</label>
+          <select id="f-category" name="category" aria-describedby="f-category-msg"></select>
+          <p class="msg" id="f-category-msg" data-hint="Add your own categories in Settings."></p>
+        </div>
+        <div class="form__actions">
+          <button type="submit" class="btn btn--gold">Issue entry</button>
+          <button type="reset" class="btn">Clear</button>
+        </div>
+      </form>
+
+      <aside class="slip" id="slip" aria-hidden="true">
+        <p class="slip__serial" id="slip-serial">AF 0001</p>
+        <p class="slip__desc" id="slip-desc">Your entry</p>
+        <p class="slip__amount" id="slip-amount">0</p>
+        <p class="slip__meta" id="slip-meta">Rwandan francs</p>
+        <p class="slip__meta" id="slip-extra"></p>
+        <p class="slip__stamp">Issued</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="view" data-view="settings" aria-labelledby="settings-title" hidden>
+    <header class="view__head">
+      <h1 id="settings-title" tabindex="-1">Settings</h1>
+      <p class="view__lede">Your rules, your rates. Everything saves to this browser and nowhere else.</p>
+    </header>
+
+    <div class="settings">
+      <section class="panel" aria-labelledby="set-currency-title">
+        <h2 id="set-currency-title">Display currency</h2>
+        <p class="panel__sub">Entries are stored in Rwandan francs. This only changes how amounts are shown.</p>
+        <div class="coins" role="group" aria-labelledby="set-currency-title" data-coins></div>
+      </section>
+
+      <section class="panel" aria-labelledby="set-theme-title">
+        <h2 id="set-theme-title">Look</h2>
+        <p class="panel__sub">Paper by day, ink green by night. Or let your device decide.</p>
+        <fieldset class="segmented">
+          <legend class="visually-hidden">Theme</legend>
+          <input type="radio" name="theme" id="theme-system" value="system"><label for="theme-system">Device</label>
+          <input type="radio" name="theme" id="theme-light" value="light"><label for="theme-light">Light</label>
+          <input type="radio" name="theme" id="theme-dark" value="dark"><label for="theme-dark">Dark</label>
+        </fieldset>
+      </section>
+
+      <section class="panel panel--wide" aria-labelledby="set-rates-title">
+        <h2 id="set-rates-title">Exchange rates</h2>
+        <p class="panel__sub">How much 1,000 RWF buys in each currency. There is no live feed, so copy today's rate from your bank or a forex bureau. The starting values are rough.</p>
+        <form id="rates-form" class="form" novalidate>
+          <div class="rates" id="rates-fields"></div>
+          <div class="form__actions">
+            <button type="submit" class="btn btn--gold">Save rates</button>
+            <button type="button" class="btn" id="rates-reset">Back to starting rates</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="set-cap-title">
+        <h2 id="set-cap-title">Spending cap</h2>
+        <p class="panel__sub">The note warns you as you get close and shouts when you go over. Set 0 to switch it off.</p>
+        <form id="cap-form" class="form" novalidate>
+          <div class="field" data-field="cap">
+            <label for="f-cap">Cap in RWF</label>
+            <input id="f-cap" name="cap" inputmode="decimal" autocomplete="off" aria-describedby="f-cap-msg">
+            <p class="msg" id="f-cap-msg" data-hint="Covers everything in the ledger."></p>
+          </div>
+          <div class="form__actions">
+            <button type="submit" class="btn btn--gold">Save cap</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="set-cat-title">
+        <h2 id="set-cat-title">Categories</h2>
+        <ul class="chips" id="category-list"></ul>
+        <form id="category-form" class="form" novalidate>
+          <div class="field" data-field="newCategory">
+            <label for="f-new-category">New category</label>
+            <div class="with-button">
+              <input id="f-new-category" name="newCategory" autocomplete="off" maxlength="24" placeholder="Airtime" aria-describedby="f-new-category-msg">
+              <button type="submit" class="btn btn--small">Add</button>
+            </div>
+            <p class="msg" id="f-new-category-msg" data-hint="Letters and spaces only."></p>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel panel--wide" aria-labelledby="set-data-title">
+        <h2 id="set-data-title">Your data</h2>
+        <p class="panel__sub">Back it up as JSON, open it in a spreadsheet as CSV, or bring a backup back in. Imports are checked line by line before anything changes.</p>
+        <div class="data-actions">
+          <button type="button" class="btn btn--gold" id="export-json">Export JSON</button>
+          <button type="button" class="btn" id="export-csv">Export CSV</button>
+          <label class="btn file-btn" for="import-file">Import JSON<input type="file" id="import-file" accept="application/json,.json"></label>
+          <button type="button" class="btn" id="load-sample">Load sample entries</button>
+          <button type="button" class="btn" id="wipe">Erase everything</button>
+        </div>
+        <div class="report" id="data-report" role="status"></div>
+      </section>
+    </div>
+  </section>
+
+  <section class="view" data-view="about" aria-labelledby="about-title" hidden>
+    <header class="view__head">
+      <h1 id="about-title" tabindex="-1">About</h1>
+      <p class="view__lede">A small ledger for people whose money leaves in small amounts.</p>
+    </header>
+
+    <div class="about">
+      <article class="panel prose" aria-labelledby="why-title">
+        <h2 id="why-title">Why it exists</h2>
+        <p>Student money rarely disappears in one big purchase. It goes a moto ride at a time, a brochette at a time, a bundle of airtime at a time, until the month ends early. Amafaranga makes those small amounts visible.</p>
+        <p>Log what you spend, set a cap, and the note on the dashboard tells you the truth in your currency of choice. The name is Kinyarwanda for money.</p>
+        <p>Nothing leaves your browser. No accounts, no servers, no tracking.</p>
+      </article>
+
+      <article class="panel" aria-labelledby="maker-title">
+        <h2 id="maker-title">Made by</h2>
+        <p class="maker">Gabriel Agaba</p>
+        <p class="panel__sub">Software Engineering student at African Leadership University, Kigali.</p>
+        <ul class="contact">
+          <li><a href="https://github.com/your-username" target="_blank" rel="noopener">github.com/your-username</a></li>
+          <li><a href="mailto:g.agaba@alustudent.com">g.agaba@alustudent.com</a></li>
+        </ul>
+      </article>
+
+      <article class="panel panel--wide" aria-labelledby="keys-title">
+        <h2 id="keys-title">Keyboard map</h2>
+        <dl class="keys">
+          <dt><kbd>1</kbd> to <kbd>5</kbd></dt><dd>Jump to Dashboard, Ledger, New entry, Settings, About</dd>
+          <dt><kbd>N</kbd></dt><dd>Start a new entry</dd>
+          <dt><kbd>/</kbd></dt><dd>Search the ledger</dd>
+          <dt><kbd>T</kbd></dt><dd>Switch between light and dark</dd>
+          <dt><kbd>Tab</kbd></dt><dd>Move forward through controls. Add <kbd>Shift</kbd> to go back</dd>
+          <dt><kbd>Enter</kbd></dt><dd>Submit a form or press the focused button</dd>
+          <dt><kbd>Esc</kbd></dt><dd>Cancel an edit or close a dialog</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>Amafaranga · made in Kigali by Gabriel Agaba · your data stays in this browser</p>
+</footer>
+
+<dialog class="dialog" id="confirm" aria-labelledby="confirm-title" aria-describedby="confirm-body">
+  <form method="dialog">
+    <h2 id="confirm-title">Are you sure?</h2>
+    <p id="confirm-body"></p>
+    <div class="dialog__actions">
+      <button type="submit" class="btn" value="cancel" autofocus>Keep it</button>
+      <button type="submit" class="btn btn--danger" value="ok" id="confirm-ok">Delete</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="visually-hidden" aria-live="polite" id="live-polite"></div>
+<div class="visually-hidden" aria-live="polite" id="cap-polite"></div>
+<div class="visually-hidden" aria-live="assertive" id="cap-assertive"></div>
+<div class="toast" id="toast" aria-hidden="true"></div>
+</body>
+</html>

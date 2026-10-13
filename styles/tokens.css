@@ -1,0 +1,90 @@
+/* The Note: a banknote on an ink green desk at night, a green note on paper by day. */
+:root {
+  --ground: #F1EBDA;
+  --surface: #FBF7EC;
+  --line: #D3C7A8;
+  --ink: #1F3B30;
+  --muted: #56645A;
+  --accent: #7A5B1E;
+  --focus: #5B2A4E;
+  --gold: #E3C77A;
+  --gold-deep: #B9933F;
+  --on-gold: #1F3B30;
+  --plum: #5B2A4E;
+  --serial: #A3352B;
+  --danger: #A3352B;
+  --danger-solid: #A3352B;
+  --ok: #2F6B4F;
+  --coin-line: #8C7F60;
+  --flash: rgba(227, 199, 122, 0.45);
+  --ring-soft: rgba(185, 147, 63, 0.25);
+  --scrim: rgba(14, 31, 24, 0.55);
+  --note-bg: #1F3B30;
+  --note-ink: #EDE6D1;
+  --note-serial: #F0A497;
+  --note-line: rgba(227, 199, 122, 0.30);
+  --note-line-2: rgba(237, 230, 209, 0.07);
+  --note-glow: rgba(227, 199, 122, 0.20);
+  --thread-track: rgba(237, 230, 209, 0.16);
+  --stamp-ink: #F4EEDD;
+  --shadow: 0 24px 50px rgba(31, 59, 48, 0.28);
+
+  --font-display: "Cormorant", "Cormorant Garamond", Georgia, serif;
+  --font-body: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius: 14px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0E1F18;
+    --surface: #132A21;
+    --line: #2C4A3D;
+    --ink: #EDE6D1;
+    --muted: #B7C2B9;
+    --accent: #E3C77A;
+    --focus: #E3C77A;
+    --serial: #E08A7E;
+    --danger: #FFB4A6;
+    --ok: #9FD8B8;
+    --coin-line: #6A8F7E;
+    --flash: rgba(227, 199, 122, 0.22);
+    --ring-soft: rgba(227, 199, 122, 0.22);
+    --scrim: rgba(4, 10, 8, 0.7);
+    --note-bg: #EDE6D1;
+    --note-ink: #1F3B30;
+    --note-serial: #A3352B;
+    --note-line: rgba(31, 59, 48, 0.32);
+    --note-line-2: rgba(91, 42, 78, 0.07);
+    --note-glow: rgba(227, 199, 122, 0.40);
+    --thread-track: rgba(31, 59, 48, 0.14);
+    --shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground: #0E1F18;
+  --surface: #132A21;
+  --line: #2C4A3D;
+  --ink: #EDE6D1;
+  --muted: #B7C2B9;
+  --accent: #E3C77A;
+  --focus: #E3C77A;
+  --serial: #E08A7E;
+  --danger: #FFB4A6;
+  --ok: #9FD8B8;
+  --coin-line: #6A8F7E;
+  --flash: rgba(227, 199, 122, 0.22);
+  --ring-soft: rgba(227, 199, 122, 0.22);
+  --scrim: rgba(4, 10, 8, 0.7);
+  --note-bg: #EDE6D1;
+  --note-ink: #1F3B30;
+  --note-serial: #A3352B;
+  --note-line: rgba(31, 59, 48, 0.32);
+  --note-line-2: rgba(91, 42, 78, 0.07);
+  --note-glow: rgba(227, 199, 122, 0.40);
+  --thread-track: rgba(31, 59, 48, 0.14);
+  --shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+}
