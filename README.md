@@ -1,4 +1,5 @@
 # Amafaranga
+Link to the deployed site : https://gabrielagaba1.github.io/Building-RI_summative/
 
 **Theme chosen:** Student Finance Tracker
 
