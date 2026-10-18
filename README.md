@@ -7,7 +7,7 @@ Amafaranga (Kinyarwanda for money) is a finance tracker for students whose money
 
 It is plain HTML, CSS and JavaScript. No frameworks, no build step, no server. Everything is saved in the browser.
 
-**Live site:** https://gabrielagaba1.github.io/amafaranga/
+
 **Demo video:** [add your unlisted YouTube link here]
 
 ---
